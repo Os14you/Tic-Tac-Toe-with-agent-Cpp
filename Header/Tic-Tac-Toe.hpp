@@ -3,7 +3,7 @@
 
 class Game_TTT {
     private:
-        int board[3][3] {0},turns;
+        int board[3][3],turns;
         int rowNum[8] {0,1,2,0,0,0,0,0};
         int colNum[8] {0,0,0,1,2,3,0,2};
         int increaseRow[8] {0,0,0,1,1,1,1,1};

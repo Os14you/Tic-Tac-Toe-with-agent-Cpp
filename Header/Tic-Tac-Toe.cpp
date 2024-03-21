@@ -7,6 +7,7 @@ Game_TTT::Game_TTT() : turn('X') , turns(0){
 
 Game_TTT::Game_TTT(char turn) : turn(turn) , turns(0){
     std::cout<<"Game Started !!\n\n";
+    for(int i=0;i<)
 }
 
 void Game_TTT::winner(char player){
@@ -52,7 +53,7 @@ bool Game_TTT::checkBoard(){
 }
 
 void Game_TTT::multiPlayer(){
-    std::cout<<"Starting with player ( "<<this->turn<<" )"<<std::endl;
+    std::cout<<"Player ( "<<this->turn<<" ) Turn"<<std::endl;
     std::cout<<"Enter your choice [row,column]: ";
     while(true){
         if(turns == 9){
