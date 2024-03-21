@@ -8,17 +8,17 @@ Game_TTT::Game_TTT() : turn('X') , turns(0){
 Game_TTT::Game_TTT(char turn) : turn(turn) , turns(0){
     std::cout<<"Game Started !!\n\n";
 }
+
 void Game_TTT::winner(char player){
     std::cout<<"\n\nWinnnnnnnnnerrrrr !! PLAYER "<<player<<" is the WINNER !!!!\n\n";
 }
+
 void Game_TTT::printBoard(){
     for(int i=0;i<3;i++){
         for(int j=0;i<3;j++){
-            switch (board[i][j]){
-            case 0 : std::cout<<" - "; break;
-            case 1 : std::cout<<" X "; break;
-            case 2 : std::cout<<" O "; break;
-            }
+            if(!board[i][j]) std::cout<<" - ";
+            else if(board[i][j]==1) std::cout<<" X ";
+            else std::cout<<" O ";
         }
         std::cout<<std::endl;
     }
