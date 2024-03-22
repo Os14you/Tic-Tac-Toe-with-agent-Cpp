@@ -1,13 +1,20 @@
 #include "Tic-Tac-Toe.hpp"
 #include <iostream>
 
-Game_TTT::Game_TTT() : turn('X') , turns(0){
-    std::cout<<"Game Started !!\n\n";
-}
-
+Game_TTT::Game_TTT() : Game_TTT('X') {}
 Game_TTT::Game_TTT(char turn) : turn(turn) , turns(0){
     std::cout<<"Game Started !!\n\n";
-    for(int i=0;i<)
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++)
+            board[i][j] = 0;
+    }
+    int cnt=0;
+    for(int r=0;r<3;r++)
+        rowNum[cnt]=r ,colNum[cnt]=0 ,increaseRow[cnt]=0 , increaseCol[cnt++]=1;
+    for(int c=0;c<3;c++)
+        rowNum[cnt]=0 ,colNum[cnt]=c ,increaseRow[cnt]=1 , increaseCol[cnt++]=0;
+    rowNum[cnt]=0 ,colNum[cnt]=0 ,increaseRow[cnt]=1 ,increaseCol[cnt++]=1;
+    rowNum[cnt]=0 ,colNum[cnt]=2 ,increaseRow[cnt]=1 ,increaseCol[cnt++]=-1;
 }
 
 void Game_TTT::winner(char player){
@@ -16,7 +23,7 @@ void Game_TTT::winner(char player){
 
 void Game_TTT::printBoard(){
     for(int i=0;i<3;i++){
-        for(int j=0;i<3;j++){
+        for(int j=0;j<3;j++){
             if(!board[i][j]) std::cout<<" - ";
             else if(board[i][j]==1) std::cout<<" X ";
             else std::cout<<" O ";
@@ -27,12 +34,11 @@ void Game_TTT::printBoard(){
 
 int Game_TTT::playTurn(int x,int y){
     if(x<0 || x>2 || y<0 || y>2 || board[x][y]){
-        std::cout<<"Invalid input . Try again"<<std::endl;
+        std::cout<<"\n\nInvalid input . Try again\n\n"<<std::endl;
         return 0;
     }
     else if(this->turn == 'X') board[x][y]=1;
     else board[x][y]=2;
-    this->turn = (this->turn == 'X' ? 'O':'X');
     return 1;
 }
 
@@ -49,16 +55,18 @@ bool Game_TTT::checkBoard(){
             return true;
         } 
     }
+    this->turn = (this->turn == 'X' ? 'O':'X');
     return false;
 }
 
 void Game_TTT::multiPlayer(){
-    std::cout<<"Player ( "<<this->turn<<" ) Turn"<<std::endl;
-    std::cout<<"Enter your choice [row,column]: ";
+
     while(true){
         if(turns == 9){
             std::cout<<"\n\nTie Game!\n\n"; break;
         }
+        std::cout<<"Player ( "<<this->turn<<" ) Turn"<<std::endl;
+        std::cout<<"Enter your choice [row,column]: ";
         int row,column;
         std::cin>>row>>column;
         row--,column--;
