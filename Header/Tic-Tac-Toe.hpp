@@ -1,7 +1,7 @@
 #ifndef TIC_TAC_TOE__
 #define TIC_TAC_TOE__
 
-class Game_TTT {
+class Game {
     private:
         int board[3][3],turns;
         int rowNum[8] {0,1,2,0,0,0,0,0};
@@ -10,8 +10,8 @@ class Game_TTT {
         int increaseCol[8] {1,1,1,0,0,0,1,-1};
         char turn;
     public:
-        Game_TTT();
-        Game_TTT(char turn);
+        Game();
+        Game(char turn);
         void winner(char player);
         void printBoard();
         int playTurn(int x,int y);

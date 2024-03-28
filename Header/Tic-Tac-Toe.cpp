@@ -1,8 +1,8 @@
 #include "Tic-Tac-Toe.hpp"
 #include <iostream>
 
-Game_TTT::Game_TTT() : Game_TTT('X') {}
-Game_TTT::Game_TTT(char turn) : turn(turn) , turns(0){
+Game::Game() : Game('X') {}
+Game::Game(char turn) : turn(turn) , turns(0){
     std::cout<<"Game Started !!\n\n";
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++)
@@ -17,11 +17,11 @@ Game_TTT::Game_TTT(char turn) : turn(turn) , turns(0){
     rowNum[cnt]=0 ,colNum[cnt]=2 ,increaseRow[cnt]=1 ,increaseCol[cnt++]=-1;
 }
 
-void Game_TTT::winner(char player){
+void Game::winner(char player){
     std::cout<<"\n\nWinnnnnnnnnerrrrr !! PLAYER "<<player<<" is the WINNER !!!!\n\n";
 }
 
-void Game_TTT::printBoard(){
+void Game::printBoard(){
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             if(!board[i][j]) std::cout<<" - ";
@@ -32,7 +32,7 @@ void Game_TTT::printBoard(){
     }
 }
 
-int Game_TTT::playTurn(int x,int y){
+int Game::playTurn(int x,int y){
     if(x<0 || x>2 || y<0 || y>2 || board[x][y]){
         std::cout<<"\n\nInvalid input . Try again\n\n"<<std::endl;
         return 0;
@@ -42,7 +42,7 @@ int Game_TTT::playTurn(int x,int y){
     return 1;
 }
 
-bool Game_TTT::checkBoard(){
+bool Game::checkBoard(){
     for(int check=0;check<8;check++){
         int r = rowNum[check] , c = colNum[check] , ic_r = increaseRow[check] , ic_c = increaseCol[check];
         int cnt = 0 , first = board[r][c];
@@ -59,7 +59,7 @@ bool Game_TTT::checkBoard(){
     return false;
 }
 
-void Game_TTT::multiPlayer(){
+void Game::multiPlayer(){
 
     while(true){
         if(turns == 9){

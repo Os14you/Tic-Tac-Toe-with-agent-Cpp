@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Header/Tic-Tac-Toe.hpp"
 int main(){
-    Game_TTT game;
+    Game game;
     game.multiPlayer();
     return 0;
 }
