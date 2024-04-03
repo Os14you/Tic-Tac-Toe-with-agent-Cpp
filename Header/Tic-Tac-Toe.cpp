@@ -8,6 +8,7 @@ Game::Game(char turn) : turn(turn) , turns(0){
         for(int j=0;j<3;j++)
             board[i][j] = 0;
     }
+    /*
     int cnt=0;
     for(int r=0;r<3;r++)
         rowNum[cnt]=r ,colNum[cnt]=0 ,increaseRow[cnt]=0 , increaseCol[cnt++]=1;
@@ -15,6 +16,7 @@ Game::Game(char turn) : turn(turn) , turns(0){
         rowNum[cnt]=0 ,colNum[cnt]=c ,increaseRow[cnt]=1 , increaseCol[cnt++]=0;
     rowNum[cnt]=0 ,colNum[cnt]=0 ,increaseRow[cnt]=1 ,increaseCol[cnt++]=1;
     rowNum[cnt]=0 ,colNum[cnt]=2 ,increaseRow[cnt]=1 ,increaseCol[cnt++]=-1;
+    */
 }
 
 void Game::winner(char player){
@@ -32,7 +34,7 @@ void Game::printBoard(){
     }
 }
 
-int Game::playTurn(int x,int y){
+int Game::playTurn(int x,int y){ 
     if(x<0 || x>2 || y<0 || y>2 || board[x][y]){
         std::cout<<"\n\nInvalid input . Try again\n\n"<<std::endl;
         return 0;
@@ -53,14 +55,13 @@ bool Game::checkBoard(){
         if(cnt == 3){
             winner(turn);
             return true;
-        } 
+        }
     }
     this->turn = (this->turn == 'X' ? 'O':'X');
     return false;
 }
 
 void Game::multiPlayer(){
-
     while(true){
         if(turns == 9){
             std::cout<<"\n\nTie Game!\n\n"; break;
@@ -68,7 +69,7 @@ void Game::multiPlayer(){
         std::cout<<"Player ( "<<this->turn<<" ) Turn"<<std::endl;
         std::cout<<"Enter your choice [row,column]: ";
         int row,column;
-        std::cin>>row>>column;
+        std::cin>>row>>column; 
         row--,column--;
         if(!playTurn(row,column))
             continue;
