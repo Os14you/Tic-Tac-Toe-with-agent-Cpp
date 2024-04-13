@@ -1,5 +1,6 @@
 #include "agent.hpp"
 #include <iostream>
+#include <fstream>
 
 Agent::Agent() : Agent('O') { }
 
@@ -53,7 +54,7 @@ int Agent::checkBoard(const int board[3][3]){
     return 1;
 }
 
-int Agent::MinMax(int board[3][3], bool isMaximizing, int depth,bool firstTurn){
+int Agent::MinMax(int board[3][3],bool isMaximizing, int depth,bool firstTurn){
     int result = checkBoard(board);
     if(depth == 0 || result != 1) {
         return result;
@@ -74,7 +75,7 @@ int Agent::MinMax(int board[3][3], bool isMaximizing, int depth,bool firstTurn){
                         finalJ = j;
                     }
                     if(firstTurn) {
-                        std::cout << "score," << i << "," << j << ": " << score << "\n";
+                        std::cout << "score of (" << i << "," << j << ") is " << score << "\n";
                     }
                 }
             }   
@@ -98,7 +99,7 @@ int Agent::MinMax(int board[3][3], bool isMaximizing, int depth,bool firstTurn){
                         finalJ = j;
                     }
                     if(firstTurn) {
-                        std::cout << "score," << i << "," << j << ": " << score << "\n";
+                        std::cout << "score of (" << i << "," << j << ") is " << score << "\n";
                     }
                 }
             }   

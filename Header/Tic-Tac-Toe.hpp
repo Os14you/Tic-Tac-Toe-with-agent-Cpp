@@ -5,7 +5,7 @@ class Game {
     private:
         int board[3][3],turns;  // 0 = - , 2 = O, 1 = X
         int rowNum[8] {0,1,2,0,0,0,0,0};
-        int colNum[8] {0,0,0,1,2,3,0,2};
+        int colNum[8] {0,0,0,0,1,2,0,2};
         int increaseRow[8] {0,0,0,1,1,1,1,1};
         int increaseCol[8] {1,1,1,0,0,0,1,-1};
         char turn;
