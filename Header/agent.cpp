@@ -6,6 +6,22 @@ Agent::Agent() : Agent('O') { }
 Agent::Agent(char symbol) : symbol(symbol){ 
     this->agentSymbol = (symbol == 'X' ? 1 : 2);
     this->opponentSymbol = (symbol == 'X' ? 2 : 1);
+    dataFile.open("Data/Agent_Data.txt",std::ios::out);
+}
+
+void Agent::writeBoard(const int board[3][3]){
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(!board[i][j]) dataFile << " - ";
+            else if(board[i][j]==1) dataFile << " X ";
+            else dataFile <<" O ";
+        }
+        dataFile << "\n";
+    }
+}
+
+void Agent::writeScore(const int &score,const int &i,const int &j){
+
 }
 
 int Agent::checkBoard(const int board[3][3]){
@@ -54,6 +70,7 @@ int Agent::checkBoard(const int board[3][3]){
 }
 
 int Agent::MinMax(int board[3][3],bool isMaximizing, int depth,bool firstTurn){
+    if(firstTurn) writeBoard(board);
     int result = checkBoard(board);
     if(depth == 0 || result != 1) {
         return result;
@@ -73,9 +90,7 @@ int Agent::MinMax(int board[3][3],bool isMaximizing, int depth,bool firstTurn){
                         finalI = i;
                         finalJ = j;
                     }
-                    if(firstTurn) {
-                        std::cout << "score of (" << i << "," << j << ") is " << score << "\n";
-                    }
+                    if(firstTurn) dataFile << "score of (" << i << "," << j << ") is " << score << "\n";
                 }
             }   
         }
@@ -97,9 +112,7 @@ int Agent::MinMax(int board[3][3],bool isMaximizing, int depth,bool firstTurn){
                         finalI = i;
                         finalJ = j;
                     }
-                    if(firstTurn) {
-                        std::cout << "score of (" << i << "," << j << ") is " << score << "\n";
-                    }
+                    if(firstTurn) dataFile << "score of (" << i << "," << j << ") is " << score << "\n";
                 }
             }   
         }
@@ -116,5 +129,6 @@ void Agent::getMove(int board[3][3],bool isEmpty){
         return;
     }
     bool isMax = (agentSymbol  == 1 ? true : false);
+    std::cout<<"Agent plays ... \n";
     if(MinMax(board,isMax)) return;
 }
