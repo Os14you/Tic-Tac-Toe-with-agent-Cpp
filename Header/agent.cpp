@@ -1,6 +1,5 @@
 #include "agent.hpp"
 #include <iostream>
-#include <fstream>
 
 Agent::Agent() : Agent('O') { }
 
