@@ -6,7 +6,8 @@ Agent::Agent() : Agent('O') { }
 Agent::Agent(char symbol) : symbol(symbol){ 
     this->agentSymbol = (symbol == 'X' ? 1 : 2);
     this->opponentSymbol = (symbol == 'X' ? 2 : 1);
-    dataFile.open("Data/Agent_Data.txt",std::ios::out);
+    dataFile.open("Data/agentData.txt", std::ios::in | std::ios::out | std::ios::app);
+    dataFile << "Start A New Game ...\n";
 }
 
 void Agent::writeBoard(const int board[3][3]){
@@ -18,10 +19,6 @@ void Agent::writeBoard(const int board[3][3]){
         }
         dataFile << "\n";
     }
-}
-
-void Agent::writeScore(const int &score,const int &i,const int &j){
-
 }
 
 int Agent::checkBoard(const int board[3][3]){
