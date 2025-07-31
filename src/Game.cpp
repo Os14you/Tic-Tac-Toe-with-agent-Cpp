@@ -1,7 +1,7 @@
 #include <Game.hpp>
 
 Game::Game() : Game('X') {}
-Game::Game(char turn) : turn(turn) , turns(0){
+Game::Game(char turn) : turn(turn), turns(0){
     std::cout<<"Game Started !!\n\n";
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++)

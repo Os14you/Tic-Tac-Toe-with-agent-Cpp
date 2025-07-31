@@ -1,5 +1,4 @@
-#ifndef Agent_TTT__
-#define Agent_TTT__
+#pragma once
 
 #include <fstream>
 #include <iostream>
@@ -18,5 +17,3 @@ public:
     ~Agent(){dataFile <<"Game Ends .. \n\n"; dataFile.close();};
     void getMove(int board[3][3],bool isEmpty = false);
 };
-
-#endif  /* Agent_TTT__ */
