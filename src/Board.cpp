@@ -25,7 +25,7 @@ void Board::place_move(const int &row, const int &col, const char &playerSymbol)
 }
 
 bool Board::is_valid_move(const int &row, const int &col) const {
-    return (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && grid[row][col] == 0);
+    return (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE && grid[row][col] == '-');
 }
 
 bool Board::check_win(const char &playerSymbol) const {
