@@ -7,7 +7,7 @@
  * @brief Displays a stylish ASCII art title for the game.
  */
 void display_title() {
-    std::string version = "2.4.1";
+    std::string version = "3.0.0";
 
     std::cout << "\n\n";
     std::cout << "████████╗██╗ ██████╗    ████████╗ █████╗  ██████╗    ████████╗ ██████╗ ███████╗\n";
