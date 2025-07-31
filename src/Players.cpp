@@ -37,6 +37,19 @@ AIPlayer::AIPlayer(char playerSymbol) : Player(playerSymbol) {
 }
 
 void AIPlayer::make_move(const Board& board, int& row, int& col) {
+    const int total_duration_ms = 3210;
+    const int interval_ms = 400;
+    const int num_intervals = total_duration_ms / interval_ms;
+    const std::string base_text = "Thinking";
+    
+    for (int i = 0; i < num_intervals; ++i) {
+        int num_dots = (i % 3) + 1;
+        // Use carriage return '\r' to move cursor to the start of the line and overwrite it
+        std::cout << "\r" << base_text << std::string(num_dots, '.') << std::string(3 - num_dots, ' ') << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(interval_ms));
+    }
+    std::cout << "\n"; // Move to the next line after thinking is done
+    
     int bestScore = INT_MIN;
     int bestRow = -1;
     int bestCol = -1;

@@ -5,6 +5,9 @@
 #include <iostream>
 #include <limits>
 #include <climits>
+#include <chrono>   // Required for time delays
+#include <thread>   // Required for sleeping the thread
+#include <string>
 
 /**
  * @class HumanPlayer
