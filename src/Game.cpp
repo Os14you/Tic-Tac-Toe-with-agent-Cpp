@@ -1,36 +1,95 @@
-#include <iostream>
-#include "Header/Tic-Tac-Toe.hpp"
+#include <Game.hpp>
 
-int menu(const bool &isFirstTime){
-    int choice;
-    if(isFirstTime)
-        std::cout << "---------- Welcome To Our Game ----------\n\n";
-    std::cout << "1. Single player Mode \n2. Multiplayer Mode\n3. Exit\n";
-    std::cout << "Enter your choice : ";
-    std::cin >> choice;
-
-    while(choice < 1 || choice > 3){
-        std::cout<<"Enter a valid input : ";
-        std::cin>>choice;
+Game::Game() : Game('X') {}
+Game::Game(char turn) : turn(turn) , turns(0){
+    std::cout<<"Game Started !!\n\n";
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++)
+            board[i][j] = 0;
     }
-    return choice;
 }
 
-void aGame(){
-    bool isFirstTime = true;
-    while(true){
-        Game game;
-        int choice = menu(isFirstTime);
-        isFirstTime = false;
-        
-        switch (choice){
-            case 1: game.singlePlayer(); break;
-            case 2: game.multiPlayer(); break;
-            default: return;
+void Game::winner(char player){
+    std::cout<<"\n\nWinnnnnnnnnerrrrr !! PLAYER "<<player<<" is the WINNER !!!!\n\n";
+}
+
+void Game::printBoard(){
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(!board[i][j]) std::cout<<" - ";
+            else if(board[i][j]==1) std::cout<<" X ";
+            else std::cout<<" O ";
+        }
+        std::cout<<std::endl;
+    }
+}
+
+int Game::playTurn(int x,int y){
+    if(x<0 || x>2 || y<0 || y>2 || board[x][y]){
+        std::cout<<"\n\nInvalid input . Try again\n\n"<<std::endl;
+        return 0;
+    }
+    else if(this->turn == 'X') board[x][y]=1;
+    else board[x][y]=2;
+    return 1;
+}
+
+bool Game::checkBoard(){
+    for(int check=0;check<8;check++){
+        int r = rowNum[check] , c = colNum[check] , ic_r = increaseRow[check] , ic_c = increaseCol[check];
+        int cnt = 0 , first = board[r][c];
+        if(first==0)
+            continue;
+        for(int steps=0;steps<3; steps++ , r+=ic_r , c+=ic_c)
+            cnt += (first == board[r][c]);
+        if(cnt == 3){
+            winner(turn);
+            return true;
         }
     }
+    this->turn = (this->turn == 'X' ? 'O':'X');
+    return false;
 }
-int main(){
-    aGame();
-    return 0;
+
+void Game::multiPlayer(){
+    while(true){
+        if(turns == 9){
+            std::cout<<"\n\nTie Game!\n\n"; break;
+        }
+        std::cout<<"Player ( "<<this->turn<<" ) Turn"<<std::endl;
+        std::cout<<"Enter your choice [row,column]: ";
+        int row,column;
+        std::cin>>row>>column; 
+        row--,column--;
+        if(!playTurn(row,column))
+            continue;
+        printBoard();
+        if(checkBoard())
+            break;
+        turns++;
+    }
+}
+
+void Game::singlePlayer(){
+    while(true){
+        std::cout<<"Player ( X ) Turn"<<std::endl;
+        std::cout<<"Enter your choice [row,column]: ";
+        int row,column;
+        std::cin>>row>>column; 
+        row--,column--;
+        if(!playTurn(row,column))
+            continue;
+        printBoard();
+        if(checkBoard())
+            break;
+        turns++;
+        if(turns == 9){
+            std::cout<<"\n\nTie Game!\n\n"; break;
+        }
+        agent.getMove(this->board,false);
+        printBoard();
+        if(checkBoard())
+            break;
+        turns++;
+    }
 }

@@ -1,5 +1,4 @@
-#include "agent.hpp"
-#include <iostream>
+#include <Player.hpp>
 
 Agent::Agent() : Agent('O') { }
 
@@ -126,6 +125,6 @@ void Agent::getMove(int board[3][3],bool isEmpty){
         return;
     }
     bool isMax = (agentSymbol  == 1 ? true : false);
-    std::cout<<"Agent plays ... \n";
+    std::cout << "Agent plays ... \n";
     if(MinMax(board,isMax)) return;
 }
