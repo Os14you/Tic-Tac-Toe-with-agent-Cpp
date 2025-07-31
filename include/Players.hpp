@@ -2,6 +2,9 @@
 
 #include "Player.hpp" // Include the abstract base class
 #include <vector>
+#include <iostream>
+#include <limits>
+#include <climits>
 
 /**
  * @class HumanPlayer
