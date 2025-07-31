@@ -33,14 +33,14 @@ public:
     /**
      * @brief Pure virtual function to get the player's next move.
      *
-     * This function must be implemented by any concrete derived class (like HumanPlayer or AIPlayer).
+     * This function is implemented by concrete derived classes (e.g., HumanPlayer and AIPlayer).
      * It's responsible for deciding on a move and providing the row and column.
      *
      * @param board A read-only reference to the current board to help decide the move.
      * @param row A reference to an integer where the chosen row (0-2) will be stored.
      * @param col A reference to an integer where the chosen column (0-2) will be stored.
      */
-    virtual void get_move(const Board& board, int& row, int& col) = 0;
+    virtual void make_move(const Board& board, int& row, int& col) = 0;
 
 protected:
     // The player's symbol, accessible to derived classes.
