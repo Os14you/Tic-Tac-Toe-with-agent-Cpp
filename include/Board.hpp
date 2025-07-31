@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 const int BOARD_SIZE = 3;
 
@@ -60,6 +61,13 @@ public:
      * @return true if no empty spaces are left, false otherwise.
      */
     bool is_full() const;
+
+    /**
+     * @brief Converts the board to a string representation.
+     *
+     * @return A string representation of the board.
+     */
+    std::string get_board_as_string() const;
 
 private:
     // The 2D grid representing the Tic-Tac-Toe board.

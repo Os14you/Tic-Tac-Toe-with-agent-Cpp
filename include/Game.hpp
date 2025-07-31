@@ -3,7 +3,13 @@
 #include "Board.hpp"
 #include "Players.hpp"
 #include <iostream>
-#include <memory> // for std::unique_ptr (smart pointers)
+#include <fstream>
+#include <string>
+#include <chrono>      // For getting the current time
+#include <ctime>       // For formatting the time
+#include <iomanip>     // For formatting the time string
+#include <filesystem>  // For creating directories (requires C++17)
+#include <memory>      // for std::unique_ptr (smart pointers)
 
 /**
  * @class Game
@@ -46,6 +52,11 @@ private:
      */
     bool is_game_over();
 
+    /**
+     * @brief Logs the current board state to a text file.
+     */
+    void log_board_state();
+
     // --- Member Variables ---
     Board board; // The game board object.
 
@@ -55,4 +66,7 @@ private:
 
     // A raw pointer to keep track of whose turn it is.
     Player* currentPlayer;
+
+    // A log file to store the game history.
+    std::ofstream log_file;
 };

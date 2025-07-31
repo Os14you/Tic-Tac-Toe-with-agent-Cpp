@@ -62,3 +62,22 @@ bool Board::is_full() const {
     }
     return true; // No empty cells were found
 }
+
+std::string Board::get_board_as_string() const {
+    std::stringstream ss;
+    ss << "\n";
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            ss << " " << grid[i][j] << " ";
+            if (j < BOARD_SIZE - 1) {
+                ss << "|";
+            }
+        }
+        ss << "\n";
+        if (i < BOARD_SIZE - 1) {
+            ss << "---|---|---\n";
+        }
+    }
+    ss << "\n";
+    return ss.str();
+}
